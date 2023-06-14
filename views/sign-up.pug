@@ -5,8 +5,14 @@ block content
   hr
 
   form(method="POST" action="")
-    label(for="username") Username
-    input(type="text" name="username" id="username")
-    label(for="password") Password
-    input(type="password" name="password" id="password")
-    button(type="submit") Submit
+    label.form-label(for="username") Username
+    input.form-control(type="text" name="username" id="username" required=true)
+    label.form-label(for="first-name") First name
+    input.form-control(type="text" name="first-name" id="first-name" required=true)
+    label.form-label(for="last-name") Last name 
+    input.form-control(type="text" name="last-name" id="last-name" required=true)
+    label.form-label(for="password") Password
+    input.form-control(type="password" name="password" id="password" required=true)
+    label.form-label(for="passwordConfirm") Confirm password
+    input.form-control(type="password" name="passwordConfirm" id="passwordConfirm" required=true)
+    button.btn.btn-primary.mt-3(type="submit") Submit
