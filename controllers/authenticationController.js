@@ -79,3 +79,7 @@ exports.signup_post = [
     } catch (err) {}
   }),
 ];
+
+exports.signin_get = asyncHandler(async (req, res, next) => {
+  res.render("sign-in");
+});
