@@ -13,6 +13,15 @@ exports.signup_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
+  body("username").custom(async (username) => {
+    const existingUser = await User.findOne({
+      username: username,
+    }).exec();
+
+    if (existingUser) {
+      throw new Error("An account with this username already exists.");
+    }
+  }),
   body("first_name", "First name must not be empty.")
     .trim()
     .isLength({ min: 1 })
@@ -45,22 +54,6 @@ exports.signup_post = [
       res.render("sign-up", {
         user: user,
         errors: errors.array(),
-      });
-    } else {
-      next();
-    }
-  }),
-  asyncHandler(async (req, res, next) => {
-    // Find existing user
-    const existingUser = await User.findOne({
-      username: req.body.username,
-    }).exec();
-
-    if (existingUser !== null) {
-      // There is a user with the same username
-      res.render("sign-up", {
-        user: req.typedUser,
-        errors: [{ msg: "An account with this username already exists." }],
       });
     } else {
       next();
