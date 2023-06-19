@@ -1,8 +1,6 @@
-const session = require("express-session");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
+const passport = require("../scripts/passport");
 
 const { body, validationResult } = require("express-validator");
 
@@ -81,5 +79,17 @@ exports.signup_post = [
 ];
 
 exports.signin_get = asyncHandler(async (req, res, next) => {
-  res.render("sign-in");
+  let errors = [];
+  console.log(req.session);
+  if (req.session.flash)
+    errors.push({ msg: req.session.flash.error.slice(-1) });
+  res.render("sign-in", {
+    errors: errors,
+  });
+});
+
+exports.signin_post = passport.authenticate("local", {
+  successRedirect: "/board",
+  failureRedirect: "/sign-in",
+  failureFlash: true,
 });

@@ -11,4 +11,6 @@ router.post("/sign-up", authentication_controller.signup_post);
 
 router.get("/sign-in", authentication_controller.signin_get);
 
+router.post("/sign-in", authentication_controller.signin_post);
+
 module.exports = router;

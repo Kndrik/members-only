@@ -3,6 +3,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const passport = require("./scripts/passport");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 var indexRouter = require("./routes/index");
 const authRouter = require("./routes/authenticationRoute");
@@ -30,6 +33,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+app.use(flash());
 
 app.use("/", authRouter);
 app.use("/", indexRouter);
