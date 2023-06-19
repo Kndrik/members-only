@@ -80,7 +80,6 @@ exports.signup_post = [
 
 exports.signin_get = asyncHandler(async (req, res, next) => {
   let errors = [];
-  console.log(req.session);
   if (req.session.flash)
     errors.push({ msg: req.session.flash.error.slice(-1) });
   res.render("sign-in", {
@@ -89,7 +88,7 @@ exports.signin_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.signin_post = passport.authenticate("local", {
-  successRedirect: "/board",
+  successRedirect: "/",
   failureRedirect: "/sign-in",
   failureFlash: true,
 });
