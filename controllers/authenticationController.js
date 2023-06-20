@@ -92,3 +92,12 @@ exports.signin_post = passport.authenticate("local", {
   failureRedirect: "/sign-in",
   failureFlash: true,
 });
+
+exports.signout_post = (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/sign-in");
+  });
+};

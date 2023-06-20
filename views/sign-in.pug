@@ -1,24 +1,25 @@
 extends layout
 
 block content 
-  h1 Sign In 
-  hr
-
-  if errors
-    ul
-      each error in errors
-        li.text-danger!= error.msg
+  .container.mt-3
+    h1 Sign In 
+    hr
   
-  if error
-    div.text-danger= error.message
-
-  form(method="POST" action="")
-    label.form-label(for="username") Username
-    input.form-control(type="text" name="username" id="username")
-    label.form-label(for="password") Password
-    input.form-control(type="password" name="password" id="password")
-    button.btn.btn-primary.mt-3(type="submit") Sign In
+    if errors
+      ul
+        each error in errors
+          li.text-danger!= error.msg
+    
+    if error
+      div.text-danger= error.message
   
-  hr
-  p Don't have an account yet?
-  a.btn.btn-primary(href="/sign-up") Sign Up
+    form(method="POST" action="")
+      label.form-label(for="username") Username
+      input.form-control(type="text" name="username" id="username")
+      label.form-label(for="password") Password
+      input.form-control(type="password" name="password" id="password")
+      button.btn.btn-primary.mt-3(type="submit") Sign In
+    
+    hr
+    p Don't have an account yet?
+    a.btn.btn-primary(href="/sign-up") Sign Up

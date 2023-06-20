@@ -1,27 +1,28 @@
 extends layout
 
 block content
-  h1 Sign Up
-  hr
+  .container.mt-3
+    h1 Sign Up
+    hr
 
-  if errors 
-    ul 
-      each error in errors
-        li.text-danger= error.msg
+    if errors 
+      ul 
+        each error in errors
+          li.text-danger= error.msg
 
-  form(method="POST" action="")
-    label.form-label(for="username") Username
-    input.form-control(type="text" name="username" id="username" required=true value=(undefined===user ? '' : user.username))
-    label.form-label(for="first_name") First name
-    input.form-control(type="text" name="first_name" id="first_name" required=true value=(undefined===user ? '' : user.first_name))
-    label.form-label(for="last_name") Last name 
-    input.form-control(type="text" name="last_name" id="last_name" required=true value=(undefined===user ? '' : user.last_name))
-    label.form-label(for="password") Password
-    input.form-control(type="password" name="password" id="password" required=true value=(undefined===user ? '' : user.password))
-    label.form-label(for="password_confirm") Confirm password
-    input.form-control(type="password" name="password_confirm" id="password_confirm" required=true)
-    button.btn.btn-primary.mt-3(type="submit") Submit
+    form(method="POST" action="")
+      label.form-label(for="username") Username
+      input.form-control(type="text" name="username" id="username" required=true value=(undefined===user ? '' : user.username))
+      label.form-label(for="first_name") First name
+      input.form-control(type="text" name="first_name" id="first_name" required=true value=(undefined===user ? '' : user.first_name))
+      label.form-label(for="last_name") Last name 
+      input.form-control(type="text" name="last_name" id="last_name" required=true value=(undefined===user ? '' : user.last_name))
+      label.form-label(for="password") Password
+      input.form-control(type="password" name="password" id="password" required=true value=(undefined===user ? '' : user.password))
+      label.form-label(for="password_confirm") Confirm password
+      input.form-control(type="password" name="password_confirm" id="password_confirm" required=true)
+      button.btn.btn-primary.mt-3(type="submit") Submit
 
-  hr
-  p You already have an account?
-  a.btn.btn-primary(href="/sign-in") Sign In
+    hr
+    p You already have an account?
+    a.btn.btn-primary(href="/sign-in") Sign In

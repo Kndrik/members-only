@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  nav.navbar.bg-dark(data-bs-theme="dark")
+    .container-fluid 
+      a.navbar-brand(href="/") Message board
+      button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse(id="navbarNav")
+        ul.navbar-nav
+          if !currentUser.isMember
+            li.nav-item 
+              a.nav-link(href="/join") Become a member
+          if currentUser.isMember
+            li.nav-item
+              a.nav-link(href="/new-message") New message
+          li.nav-item
+            form(method="post" action="/sign-out")
+              button.nav-link(type="submit") Sign out
+  .container.mt-3
+    block boardContent
