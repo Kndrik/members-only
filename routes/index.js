@@ -7,7 +7,8 @@ router.get("/", function (req, res, next) {
     console.log("There is a user");
     res.render("index", { title: "Welcome" });
   } else {
-    res.render("sign-in");
+    console.log("There is no user");
+    res.redirect("/sign-in");
   }
 });
 
