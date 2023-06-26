@@ -11,11 +11,11 @@ block boardContent
           h4.card-header= message.title
           div.card-body
             div.mb-3.card-text.fs-5= message.content
-            div.card-subtitle.text-body-secondary.fs-6 by #{message.user.username}
-            div.card-text.text-body-secondary.fs-6= message.date_formatted
+            div.card-subtitle.text-body-secondary.fs-6 @#{message.user.username}
+              span.card-text.text-body-secondary.fs-6  · #{message.date_formatted}
       else
         div.card(style='width: 100%')
           h4.card-header= message.title
           div.card-body
             div.mb-3.card-text.fs-5= message.content
-            div.card-subtitle.text-body-secondary.fs-6 Anonymous
+            span.card-subtitle.text-body-secondary.fs-6 Anonymous

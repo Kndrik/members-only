@@ -1,0 +1,18 @@
+extends board-layout 
+
+block boardContent 
+  h1 New message
+
+  if errors
+    ul 
+      each error in errors 
+        li.text-danger!= error.msg
+
+  form(method="POST" action="")
+    div.mb-3.mt-4.form-floating
+      input.form-control(name="title" id="title" value=(undefined===message ? '' : message.title))
+      label(for="title") Title
+    div.form-floating.mb-3
+      textarea.form-control(id="message" name="message" style="height:100px;") #{undefined===message ? '' : message.content}
+      label(for="message") Message
+    button.btn.btn-primary(type='submit') Submit
