@@ -44,6 +44,15 @@ app.use(function (req, res, next) {
 app.use(flash());
 
 app.use("/", authRouter);
+
+app.use((req, res, next) => {
+  if (!req.user) {
+    res.redirect("/sign-in");
+  } else {
+    next();
+  }
+});
+
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
