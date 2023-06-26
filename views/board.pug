@@ -1,21 +1,34 @@
 extends board-layout 
 
 block boardContent
-  h1.mb-4= title
+  h1= title
 
-  ul(style='list-style: none; padding: 0; margin: 0;')
+  ul.mt-4(style='list-style: none; padding: 0; margin: 0;')
+    if !currentUser.isMember
+      li.list-group-item.mb-4 
+        div.card(style='width: 100%')
+          div(style="font-weight:bold;").card-header Become a member
+          div.card-body
+            div.mb-3.card-text.fs-6 Go to the 
+              a(href="/join") become a member
+              span  page and submit the secret code "12member34" to become a member and see who posted the messages you see here!
+            div.card-subtitle.text-body-secondary.fs-6 @admin
     each message in message_list
       li.list-group-item.mb-4
       if currentUser.isMember
         div.card(style='width: 100%')
-          h4.card-header= message.title
+          div.card-header.d-flex.justify-content-between.align-items-center
+            div.text-bold(style="font-weight: bold;")= message.title
+            if currentUser.isAdmin
+              button.btn-close(type="button" aria-label="Close")
           div.card-body
-            div.mb-3.card-text.fs-5= message.content
+            div.mb-3.card-text.fs-6= message.content
             div.card-subtitle.text-body-secondary.fs-6 @#{message.user.username}
               span.card-text.text-body-secondary.fs-6  · #{message.date_formatted}
       else
         div.card(style='width: 100%')
-          h4.card-header= message.title
+          div.card-header.d-flex.justify-content-between.align-items-center
+            div(style="font-weight: bold;")= message.title
           div.card-body
-            div.mb-3.card-text.fs-5= message.content
+            div.mb-3.card-text.fs-6= message.content
             span.card-subtitle.text-body-secondary.fs-6 Anonymous
