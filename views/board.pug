@@ -20,7 +20,8 @@ block boardContent
           div.card-header.d-flex.justify-content-between.align-items-center
             div.text-bold(style="font-weight: bold;")= message.title
             if currentUser.isAdmin
-              button.btn-close(type="button" aria-label="Close")
+              form(method="post" action=`/messages/${message._id}/delete`)
+                button.btn.btn-close(type="submit" aria-label="Close")
           div.card-body
             div.mb-3.card-text.fs-6= message.content
             div.card-subtitle.text-body-secondary.fs-6 @#{message.user.username}

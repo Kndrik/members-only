@@ -27,4 +27,6 @@ router.get("/new-message", (req, res, next) => res.render("message-form"));
 
 router.post("/new-message", message_controller.post_new_message);
 
+router.post("/messages/:id/delete", message_controller.post_delete);
+
 module.exports = router;

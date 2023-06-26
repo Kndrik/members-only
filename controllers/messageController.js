@@ -35,3 +35,8 @@ exports.post_new_message = [
     }
   }),
 ];
+
+exports.post_delete = asyncHandler(async (req, res, next) => {
+  await Message.findByIdAndRemove(req.params.id);
+  res.redirect("/board");
+});
