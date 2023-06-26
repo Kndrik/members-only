@@ -2,6 +2,8 @@ const Message = require("../models/message");
 
 const asyncHandler = require("express-async-handler");
 
+const he = require("he");
+
 exports.display_messages = asyncHandler(async (req, res, next) => {
   const message_list = await Message.find()
     .populate("user")
@@ -15,6 +17,8 @@ exports.display_messages = asyncHandler(async (req, res, next) => {
     } else {
       newMessage.isAnonymous = true;
     }
+    newMessage.title = he.decode(newMessage.title);
+    newMessage.content = he.decode(newMessage.content);
     return newMessage;
   });
 
