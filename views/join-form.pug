@@ -1,0 +1,10 @@
+extends board-layout
+
+block boardContent
+  h1 Become a member
+
+  form(method='POST' action='')
+    div.mb-4.mt-4
+      label.form-label(for="code") Secret code:
+      input.form-control(id="code" name="code")
+    button.btn.btn-primary(type='submit') Submit

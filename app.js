@@ -45,6 +45,7 @@ app.use(flash());
 
 app.use("/", authRouter);
 
+// Redirect the user to the sign in page if he tries to access any url without being signed-in
 app.use((req, res, next) => {
   if (!req.user) {
     res.redirect("/sign-in");
